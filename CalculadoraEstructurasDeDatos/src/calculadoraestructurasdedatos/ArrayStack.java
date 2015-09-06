@@ -20,7 +20,7 @@ public class ArrayStack<E> implements Stack<E>{
 
     @Override
     public E peek() {
-        
+        return data [size - 1];
     }
 
     @Override
