@@ -11,11 +11,12 @@ package calculadoraestructurasdedatos;
  */
 public class ArrayStack<E> implements Stack<E>{
 
-    private E data[];
+    
+    private E [] data = (E[]) new Object[1];
     private int size = 0;
     @Override
     public boolean isEmpty() {
-        return size == 0;
+        return size == 1;
     } 
 
     @Override
@@ -26,10 +27,17 @@ public class ArrayStack<E> implements Stack<E>{
     @Override
     public E pop() {
         
+        return null;
     }
 
     @Override
     public void push(E recibido) {
+        
+        if (data.length == size) {
+            
+            
+            
+        }
         
     }
     
