@@ -5,6 +5,7 @@
  */
 package calculadoraestructurasdedatos;
 
+import java.util.EmptyStackException;
 import java.util.NoSuchElementException;
 
 /**
@@ -31,8 +32,11 @@ public class ArrayStack<E> implements Stack<E>{
 
     @Override
     public E pop() {
-        
-        return null;
+        if (size == 0)
+            throw new EmptyStackException();
+        else
+            size = size - 1;
+            return data [size - 1] = null;
     }
 
     @Override

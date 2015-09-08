@@ -123,7 +123,7 @@ public class Interfaz extends JFrame
         public void actionPerformed(ActionEvent e) 
         {
           JButton temp = (JButton)e.getSource();
-          System.out.println(temp.getText());
+          jtCalculadora.setText(jtCalculadora.getText() + temp.getText());
         }
     }
 }
