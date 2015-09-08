@@ -52,54 +52,52 @@ public class Interfaz extends JFrame
         pnlBotones2 = new JPanel(new GridLayout(2,6));        
         Contenedor1.add (pnlBotones);
         Contenedor1.add (pnlBotones2);
-        btnBorrar = new JButton("(Borrar)");
-        pnlBotones.add(btnBorrar);
-        btnIgual = new JButton("=");
-        pnlBotones.add(btnIgual);
-        btnC = new JButton("C");
-        pnlBotones.add(btnC);
-        btnSuma = new JButton("+");
-        pnlBotones.add(btnSuma);
-        btnPar1 = new JButton("(");
-        pnlBotones.add(btnPar1);
         btn7 = new JButton("7");
         pnlBotones.add(btn7);
         btn8 = new JButton("8");
         pnlBotones.add(btn8);
         btn9 = new JButton("9");
         pnlBotones.add(btn9);
-        btnDiv = new JButton("/");
-        pnlBotones.add(btnDiv);
-        btnPar2 = new JButton(")");
-        pnlBotones.add(btnPar2);
+        btnSuma = new JButton("+");
+        pnlBotones.add(btnSuma);
+        btnC = new JButton("C");
+        pnlBotones.add(btnC);
+        btnBorrar = new JButton("<==");
+        pnlBotones.add(btnBorrar);
         btn4 = new JButton("4");
         pnlBotones.add(btn4);
         btn5 = new JButton("5");
         pnlBotones.add(btn5);
         btn6 = new JButton("6");
-        pnlBotones2.add(btn6);
-        btnMult = new JButton("*");
-        pnlBotones2.add(btnMult);
-        btnMod = new JButton("Mod");
-        pnlBotones2.add(btnMod);
+        pnlBotones.add(btn6);
+        btnDiv = new JButton("/");
+        pnlBotones.add(btnDiv);
+        btnPar1 = new JButton("(");
+        pnlBotones.add(btnPar1);
+        btnPar2 = new JButton(")");
+        pnlBotones.add(btnPar2);
         btn1 = new JButton("1");
         pnlBotones2.add(btn1);     
         btn2 = new JButton("2");
         pnlBotones2.add(btn2);
         btn3 = new JButton("3");
         pnlBotones2.add(btn3);
+        btnMult = new JButton("*");
+        pnlBotones2.add(btnMult);
+        btnMod = new JButton("Mod");
+        pnlBotones2.add(btnMod);
         btnResta = new JButton("-");
         pnlBotones2.add(btnResta);
-        btn0 = new JButton("0");
-        pnlBotones2.add(btn0);
         btnPunto = new JButton(".");
         pnlBotones2.add(btnPunto);
+        btn0 = new JButton("0");
+        pnlBotones2.add(btn0);
         btnDivE = new JButton("Div");
         pnlBotones2.add(btnDivE);
         btnIgual = new JButton("=");
         pnlBotones2.add(btnIgual);
-        
-        
+        btnIgual = new JButton("=");
+        pnlBotones2.add(btnIgual);
     }
     
     public void botonEscuchador()
@@ -124,6 +122,16 @@ public class Interfaz extends JFrame
         {
           JButton temp = (JButton)e.getSource();
           jtCalculadora.setText(jtCalculadora.getText() + temp.getText());
+        }
+    }
+    
+    public class botonManejador2 implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+          JButton temp = (JButton)e.getSource();
+          
         }
     }
 }
