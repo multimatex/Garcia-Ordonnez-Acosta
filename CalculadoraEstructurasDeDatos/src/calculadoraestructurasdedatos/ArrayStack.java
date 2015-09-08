@@ -5,6 +5,8 @@
  */
 package calculadoraestructurasdedatos;
 
+import java.util.NoSuchElementException;
+
 /**
  *
  * @author Equipo
@@ -16,11 +18,14 @@ public class ArrayStack<E> implements Stack<E>{
     private int size = 0;
     @Override
     public boolean isEmpty() {
-        return size == 1;
+        return size == 0;
     } 
 
     @Override
     public E peek() {
+        if (size == 0) {
+            throw new NoSuchElementException("error al mirar el ultimo elemento de la pila vacia");
+        }
         return data [size - 1];
     }
 
