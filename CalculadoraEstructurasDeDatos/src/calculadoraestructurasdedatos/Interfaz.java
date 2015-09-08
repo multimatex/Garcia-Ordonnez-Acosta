@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package calculadoraestructurasdedatos;
+import java.awt.Button;
 import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -37,6 +38,7 @@ public class Interfaz extends JFrame
         add(Contenedor1);        
         AgregarBoton();
         botonEscuchador();//comentario de prueba
+        jtCalculadora.setText("prueba borrar");
         this.setSize(800, 800);
  
     }
@@ -113,6 +115,7 @@ public class Interfaz extends JFrame
        btn8.addActionListener(manejador);
        btn9.addActionListener(manejador);
        btn0.addActionListener(manejador);
+       btnBorrar.addActionListener(manejador);
     }
     
     public class botonManejador implements ActionListener
@@ -120,18 +123,18 @@ public class Interfaz extends JFrame
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-          JButton temp = (JButton)e.getSource();
-          jtCalculadora.setText(jtCalculadora.getText() + temp.getText());
-        }
-    }
-    
-    public class botonManejador2 implements ActionListener
-    {
-        @Override
-        public void actionPerformed(ActionEvent e) 
-        {
-          JButton temp = (JButton)e.getSource();
-          
+            if (e.getSource() != btnBorrar && e.getSource() != btnC && e.getSource() != btnIgual )
+            {
+                JButton temp = (JButton)e.getSource();
+                jtCalculadora.setText(jtCalculadora.getText() + temp.getText());
+            }
+            
+            if (e.getSource() == btnBorrar)
+            {
+                if(jtCalculadora.getText().length()!=0){
+                jtCalculadora.setText(jtCalculadora.getText().substring(0, jtCalculadora.getText().length()-1));
+            }
+            }
         }
     }
 }

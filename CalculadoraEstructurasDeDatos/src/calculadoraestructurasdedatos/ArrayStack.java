@@ -36,7 +36,7 @@ public class ArrayStack<E> implements Stack<E>{
             throw new EmptyStackException();
         else
             size = size - 1;
-            return data [size - 1] = null; //tengo la duda de que asi sea pop, quisiera que revisen bien
+            return data [size] = null; //tengo la duda de que asi sea pop, quisiera que revisen bien
     }
 
     @Override
