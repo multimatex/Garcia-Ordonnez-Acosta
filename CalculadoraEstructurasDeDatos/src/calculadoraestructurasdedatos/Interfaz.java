@@ -116,6 +116,7 @@ public class Interfaz extends JFrame
        btn9.addActionListener(manejador);
        btn0.addActionListener(manejador);
        btnBorrar.addActionListener(manejador);
+       btnC.addActionListener(manejador);
     }
     
     public class botonManejador implements ActionListener
@@ -133,8 +134,10 @@ public class Interfaz extends JFrame
             {
                 if(jtCalculadora.getText().length()!=0){
                 jtCalculadora.setText(jtCalculadora.getText().substring(0, jtCalculadora.getText().length()-1));
+                }
             }
-            }
+            if (e.getSource() == btnC)
+                jtCalculadora.setText("");
         }
     }
 }
