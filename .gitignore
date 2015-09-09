@@ -63,9 +63,12 @@ CalculadoraEstructurasDeDatos/nbproject/private/private.xml
 CalculadoraEstructurasDeDatos/dist/README.TXT
 CalculadoraEstructurasDeDatos/nbproject/private/private.xml
 CalculadoraEstructurasDeDatos/nbproject/private/private.properties
+<<<<<<< HEAD
 CalculadoraEstructurasDeDatos/nbproject/private/private.xml
 CalculadoraEstructurasDeDatos/nbproject/private/private.xml
 *.xml
 CalculadoraEstructurasDeDatos/nbproject/private/private.xml
 CalculadoraEstructurasDeDatos/nbproject/private/private.xml
 CalculadoraEstructurasDeDatos/nbproject/private/private.xml
+=======
+>>>>>>> parent of 395a030... Revert "eliminacion de comentarios de cambios de prueba para github"
