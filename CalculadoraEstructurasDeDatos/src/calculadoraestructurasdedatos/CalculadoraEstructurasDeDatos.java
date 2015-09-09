@@ -20,8 +20,13 @@ public class CalculadoraEstructurasDeDatos {
      // TODO code application logic here
         Interfaz marco = new Interfaz();
         marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//<<<<<<< HEAD
+        int num1 = 0;
+        String cosa1 = "hola";
+//=======
         marco.setLocation(500, 150);
         marco.setResizable(false);
+//>>>>>>> master
         marco.setSize(400, 400);
         marco.setVisible(true);
     }
