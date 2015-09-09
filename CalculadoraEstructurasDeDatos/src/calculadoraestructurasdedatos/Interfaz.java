@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package calculadoraestructurasdedatos;
+import java.awt.Button;
 import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -12,6 +13,8 @@ import java.awt.GridLayout;
 import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -37,6 +40,7 @@ public class Interfaz extends JFrame
         add(Contenedor1);        
         AgregarBoton();
         botonEscuchador();//comentario de prueba
+        jtCalculadora.setText("prueba borrar");
         this.setSize(800, 800);
  
     }
@@ -52,54 +56,52 @@ public class Interfaz extends JFrame
         pnlBotones2 = new JPanel(new GridLayout(2,6));        
         Contenedor1.add (pnlBotones);
         Contenedor1.add (pnlBotones2);
-        btnBorrar = new JButton("(Borrar)");
-        pnlBotones.add(btnBorrar);
-        btnIgual = new JButton("=");
-        pnlBotones.add(btnIgual);
-        btnC = new JButton("C");
-        pnlBotones.add(btnC);
-        btnSuma = new JButton("+");
-        pnlBotones.add(btnSuma);
-        btnPar1 = new JButton("(");
-        pnlBotones.add(btnPar1);
         btn7 = new JButton("7");
         pnlBotones.add(btn7);
         btn8 = new JButton("8");
         pnlBotones.add(btn8);
         btn9 = new JButton("9");
         pnlBotones.add(btn9);
-        btnDiv = new JButton("/");
-        pnlBotones.add(btnDiv);
-        btnPar2 = new JButton(")");
-        pnlBotones.add(btnPar2);
+        btnSuma = new JButton("+");
+        pnlBotones.add(btnSuma);
+        btnC = new JButton("C");
+        pnlBotones.add(btnC);
+        btnBorrar = new JButton("<==");
+        pnlBotones.add(btnBorrar);
         btn4 = new JButton("4");
         pnlBotones.add(btn4);
         btn5 = new JButton("5");
         pnlBotones.add(btn5);
         btn6 = new JButton("6");
-        pnlBotones2.add(btn6);
-        btnMult = new JButton("*");
-        pnlBotones2.add(btnMult);
-        btnMod = new JButton("Mod");
-        pnlBotones2.add(btnMod);
+        pnlBotones.add(btn6);
+        btnDiv = new JButton("/");
+        pnlBotones.add(btnDiv);
+        btnPar1 = new JButton("(");
+        pnlBotones.add(btnPar1);
+        btnPar2 = new JButton(")");
+        pnlBotones.add(btnPar2);
         btn1 = new JButton("1");
         pnlBotones2.add(btn1);     
         btn2 = new JButton("2");
         pnlBotones2.add(btn2);
         btn3 = new JButton("3");
         pnlBotones2.add(btn3);
+        btnMult = new JButton("*");
+        pnlBotones2.add(btnMult);
+        btnMod = new JButton("Mod");
+        pnlBotones2.add(btnMod);
         btnResta = new JButton("-");
         pnlBotones2.add(btnResta);
-        btn0 = new JButton("0");
-        pnlBotones2.add(btn0);
         btnPunto = new JButton(".");
         pnlBotones2.add(btnPunto);
+        btn0 = new JButton("0");
+        pnlBotones2.add(btn0);
         btnDivE = new JButton("Div");
         pnlBotones2.add(btnDivE);
         btnIgual = new JButton("=");
         pnlBotones2.add(btnIgual);
-        
-        
+        btnIgual = new JButton("=");
+        pnlBotones2.add(btnIgual);
     }
     
     public void botonEscuchador()
@@ -115,6 +117,17 @@ public class Interfaz extends JFrame
        btn8.addActionListener(manejador);
        btn9.addActionListener(manejador);
        btn0.addActionListener(manejador);
+       btnBorrar.addActionListener(manejador);
+       btnC.addActionListener(manejador);
+    }
+    private void cant1KeyPressed(java.awt.event.KeyEvent evt) {  //este metodo borra letras que hayan ingresado del teclado
+        // aqui ponemos la validacion: 
+        int k = (int) evt.getKeyChar(); //k = al valor de la tecla presionada 
+        if (k >= 97 && k <= 122 || k >= 65 && k <= 90) { //Si el carácter ingresado es una letra 
+            evt.setKeyChar((char) KeyEvent.VK_CLEAR); //Limpiar el carácter ingresado 
+            JOptionPane.showMessageDialog(null, "No puede ingresar letras!!!", "Validando Datos", 
+            JOptionPane.ERROR_MESSAGE); 
+        }
     }
     
     public class botonManejador implements ActionListener
@@ -122,8 +135,20 @@ public class Interfaz extends JFrame
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-          JButton temp = (JButton)e.getSource();
-          System.out.println(temp.getText());
+            if (e.getSource() != btnBorrar && e.getSource() != btnC && e.getSource() != btnIgual )
+            {
+                JButton temp = (JButton)e.getSource();
+                jtCalculadora.setText(jtCalculadora.getText() + temp.getText());
+            }
+            
+            if (e.getSource() == btnBorrar)
+            {
+                if(jtCalculadora.getText().length()!=0){
+                jtCalculadora.setText(jtCalculadora.getText().substring(0, jtCalculadora.getText().length()-1));
+                }
+            }
+            if (e.getSource() == btnC)
+                jtCalculadora.setText("");
         }
     }
 }
