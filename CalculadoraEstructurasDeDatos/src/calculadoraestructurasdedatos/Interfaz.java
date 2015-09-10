@@ -6,6 +6,7 @@
 package calculadoraestructurasdedatos;
 import java.awt.Button;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -29,7 +30,8 @@ public class Interfaz extends JFrame
     private JButton btn0,btn1,btn2,btn3, btn4,btn5,btn6,btn7,btn8,btn9,btnSuma,btnResta,btnMult,btnDiv,btnPot,btnMod,btnDivE,btnIgual,btnPunto,btnBorrar,btnPar1,btnPar2,btnC;
     private JTextField jtCalculadora;
     private JPanel pnlBotones2,pnlBotones,pnltexto,Contenedor1;
-    
+    private double var1, var2;
+    private int operacion;
     
     
     public Interfaz()
@@ -37,10 +39,10 @@ public class Interfaz extends JFrame
         // mira mi huevo.
         super ("Calculadora del Averno");
         Contenedor1 = new JPanel(new GridLayout(3, 1));
-        add(Contenedor1);        
+        add(Contenedor1);
         AgregarBoton();
         botonEscuchador();//comentario de prueba
-        jtCalculadora.setText("prueba borrar");
+        jtCalculadora.setText("0");
         this.setSize(800, 800);
  
     }
@@ -119,6 +121,8 @@ public class Interfaz extends JFrame
        btn0.addActionListener(manejador);
        btnBorrar.addActionListener(manejador);
        btnC.addActionListener(manejador);
+       btnIgual.addActionListener(manejador);
+       btnSuma.addActionListener(manejador);
     }
     private void cant1KeyPressed(java.awt.event.KeyEvent evt) {  //este metodo borra letras que hayan ingresado del teclado
         // aqui ponemos la validacion: 
@@ -135,10 +139,19 @@ public class Interfaz extends JFrame
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            if (e.getSource() != btnBorrar && e.getSource() != btnC && e.getSource() != btnIgual )
+            if (e.getSource() == btnSuma)
+            {
+                operacion = 1;
+                var1 = Integer.parseInt(jtCalculadora.getText());
+            }
+            
+            if (e.getSource() != btnBorrar && e.getSource() != btnC && e.getSource() != btnIgual && e.getSource() != btnDiv
+                    && e.getSource() != btnDivE && e.getSource() != btnMod && e.getSource() != btnMult && e.getSource() != btnResta
+                    && e.getSource() != btnSuma)
             {
                 JButton temp = (JButton)e.getSource();
                 jtCalculadora.setText(jtCalculadora.getText() + temp.getText());
+                
             }
             
             if (e.getSource() == btnBorrar)
@@ -149,6 +162,14 @@ public class Interfaz extends JFrame
             }
             if (e.getSource() == btnC)
                 jtCalculadora.setText("");
+            
+            if (e.getSource() == btnIgual)
+            {
+                double num = Integer.parseInt(jtCalculadora.getText());
+                System.out.println(num);
+            }
+            
+            
         }
     }
 }
