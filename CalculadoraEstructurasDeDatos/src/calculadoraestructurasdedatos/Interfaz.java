@@ -15,6 +15,7 @@ import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -32,6 +33,7 @@ public class Interfaz extends JFrame
     private JPanel pnlBotones2,pnlBotones,pnltexto,Contenedor1;
     private double var1, var2;
     private int operacion;
+    private ArrayStack operadores,valores,operaciones_temp,valores_temp;
     
     
     public Interfaz()
@@ -43,7 +45,8 @@ public class Interfaz extends JFrame
         AgregarBoton();
         botonEscuchador();//comentario de prueba
         jtCalculadora.setText("0");
-        this.setSize(800, 800);
+        this.setSize(800, 800);        
+        
  
     }
     
@@ -165,8 +168,102 @@ public class Interfaz extends JFrame
             
             if (e.getSource() == btnIgual)
             {
-                double num = Integer.parseInt(jtCalculadora.getText());
-                System.out.println(num);
+                 String texto_de_entrada = "0" + jtCalculadora.getText();
+                 texto_de_entrada = texto_de_entrada.trim();
+                 texto_de_entrada = texto_de_entrada.replaceAll(" ", "");
+                 texto_de_entrada = texto_de_entrada.replaceAll("-", "+-");
+                 String temp = "";
+                 for (int i = 0; i < texto_de_entrada.length(); i++) {
+                     char indice_de_navegacion = texto_de_entrada.charAt(i);
+                     
+                     if (indice_de_navegacion == '-') {
+                         temp = "-" + temp;                         
+                     } 
+                     
+                     else if (indice_de_navegacion != '+' &&  indice_de_navegacion != '*' && indice_de_navegacion != '/' ) {
+                         temp= temp + indice_de_navegacion;
+                         
+                     }
+                     else
+                     {
+                         valores.push(Double.parseDouble(temp));
+                         operadores.push((int)indice_de_navegacion);
+                         temp = "";
+                         
+                     }
+                    
+                }
+                 
+                 valores.push(Double.parseDouble(temp));
+                 char simbolos_de_operaciones[] ={'/','*','+'};
+                 
+                 for (int i = 0; i < 3; i++) {
+                     
+                     boolean es_simbolo_operador = false;
+                     
+                     while (!operadores.isEmpty()) {
+                         
+                         int indiceSimboloOperador = (int)operadores.pop();
+                         double valor1 = (double)valores.pop();
+                         double valor2 = (double)valores.pop();
+                         if (indiceSimboloOperador == simbolos_de_operaciones[i]) 
+                         {
+                             if (i == 0) 
+                             {
+                                 valores_temp.push(valor2/valor1);
+                                 es_simbolo_operador = true;
+                                 break;
+                             }
+                             
+                             else if (i == 1) 
+                             {
+                                 valores_temp.push(valor2 * valor1);
+                                 es_simbolo_operador = true;
+                                 break;
+                                 
+                             }
+                             else if (i == 2) 
+                             {
+                                 valores_temp.push(valor2 + valor1);
+                                 es_simbolo_operador = true;
+                                 break;
+                                 
+                             }                            
+ 
+                             
+                         }
+                         else
+                         {
+                             valores_temp.push(valor1);
+                             valores.push(valor2);
+                             operaciones_temp.push(indiceSimboloOperador);
+                         }
+                         
+                         
+                     }
+                     
+                     while (!valores_temp.isEmpty()) 
+                     {
+                         valores.push(valores_temp.pop());
+                     }
+                     
+                     while (!operaciones_temp.isEmpty()) 
+                     {
+                         operadores.push(operaciones_temp.pop());
+                     }
+                     
+                     if (es_simbolo_operador) {
+                         
+                         i--;
+                         
+                     }
+                    
+                }
+                 jtCalculadora.setText(jtCalculadora.getText() + "\n = " + valores.pop());
+                 
+                 
+                //double num = Integer.parseInt(jtCalculadora.getText());
+                //System.out.println(num);
             }
             
             
