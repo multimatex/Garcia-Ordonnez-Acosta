@@ -29,13 +29,23 @@ public class Interfaz extends JFrame
     private JButton btn0,btn1,btn2,btn3, btn4,btn5,btn6,btn7,btn8,btn9,btnSuma,btnResta,btnMult,btnDiv,btnPot,btnMod,btnDivE,btnIgual,btnPunto,btnBorrar,btnPar1,btnPar2,btnC;
     private JTextField jtCalculadora;
     private JPanel pnlBotones2,pnlBotones,pnltexto,Contenedor1;
+<<<<<<< HEAD
 
 
+=======
+<<<<<<< HEAD
+>>>>>>> Santiago
     private double var1, var2;
     private int operacion;
     
     
+<<<<<<< HEAD
 
+=======
+=======
+  
+>>>>>>> juan
+>>>>>>> Santiago
     public Interfaz()
     {
         // mira mi huevo.
