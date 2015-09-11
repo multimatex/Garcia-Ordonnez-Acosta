@@ -42,6 +42,7 @@ public class ArrayStack<E> implements Stack<E>{
             size = size - 1;
             E temporal = data[size];
             data [size] = null;
+            
             return temporal;
         
         }
@@ -63,7 +64,10 @@ public class ArrayStack<E> implements Stack<E>{
                 contador++;
             }
             
+            arreglo_nuevo[contador] = recibido;
+            size++;
             data = arreglo_nuevo;
+            
             
         }
         else
