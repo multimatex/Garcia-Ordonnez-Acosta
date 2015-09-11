@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
 public class ArrayStack<E> implements Stack<E>{
 
     
-    private E [] data = (E[]) new Object[1];
+    private E [] data = (E[]) new Object[1];    
     private int size = 0;
     @Override
     public boolean isEmpty() {
@@ -32,11 +32,22 @@ public class ArrayStack<E> implements Stack<E>{
 
     @Override
     public E pop() {
+        
+        
+        
         if (size == 0)
             throw new EmptyStackException();
         else
+        {            
             size = size - 1;
-            return data [size] = null; //tengo la duda de que asi sea pop, quisiera que revisen bien
+            E temporal = data[size];
+            data [size] = null;
+            return temporal;
+        
+        }
+                
+        
+             //tengo la duda de que asi sea pop, quisiera que revisen bien
     }
 
     @Override
