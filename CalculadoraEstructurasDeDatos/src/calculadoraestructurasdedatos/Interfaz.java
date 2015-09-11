@@ -205,10 +205,73 @@ public class Interfaz extends JFrame
                  valores.push(Double.parseDouble(temp));
                  char simbolos_de_operaciones[] ={'/','*','+'};
                  
+                 for (int i = 0; i < 3; i++) {
+                     
+                     boolean es_simbolo_operador = false;
+                     
+                     while (!operadores.isEmpty()) {
+                         
+                         int indiceSimboloOperador = (int)operadores.pop();
+                         double valor1 = (double)valores.pop();
+                         double valor2 = (double)valores.pop();
+                         if (indiceSimboloOperador == simbolos_de_operaciones[i]) 
+                         {
+                             if (i == 0) 
+                             {
+                                 valores_temp.push(valor2/valor1);
+                                 es_simbolo_operador = true;
+                                 break;
+                             }
+                             
+                             else if (i == 1) 
+                             {
+                                 valores_temp.push(valor2 * valor1);
+                                 es_simbolo_operador = true;
+                                 break;
+                                 
+                             }
+                             else if (i == 2) 
+                             {
+                                 valores_temp.push(valor2 + valor1);
+                                 es_simbolo_operador = true;
+                                 break;
+                                 
+                             }                            
+ 
+                             
+                         }
+                         else
+                         {
+                             valores_temp.push(valor1);
+                             valores.push(valor2);
+                             operaciones_temp.push(indiceSimboloOperador);
+                         }
+                         
+                         
+                     }
+                     
+                     while (!valores_temp.isEmpty()) 
+                     {
+                         valores.push(valores_temp.pop());
+                     }
+                     
+                     while (!operaciones_temp.isEmpty()) 
+                     {
+                         operadores.push(operaciones_temp.pop());
+                     }
+                     
+                     if (es_simbolo_operador) {
+                         
+                         i--;
+                         
+                     }
+                    
+                }
+                 jtCalculadora.setText(jtCalculadora.getText() + "\n = " + valores.pop());
                  
                  
-                double num = Integer.parseInt(jtCalculadora.getText());
-                System.out.println(num);
+                //double num = Integer.parseInt(jtCalculadora.getText());
+                //System.out.println(num);
             }
             if (e.getSource() == btnResta) {
                 
