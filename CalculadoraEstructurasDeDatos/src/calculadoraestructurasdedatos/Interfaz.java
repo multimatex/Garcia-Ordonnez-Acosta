@@ -24,16 +24,19 @@ import javax.swing.JPanel;
  */
 public class Interfaz extends JFrame
 {    
-    
-    
+   
     // Todos los botones declarados
     private JButton btn0,btn1,btn2,btn3, btn4,btn5,btn6,btn7,btn8,btn9,btnSuma,btnResta,btnMult,btnDiv,btnPot,btnMod,btnDivE,btnIgual,btnPunto,btnBorrar,btnPar1,btnPar2,btnC;
     private JTextField jtCalculadora;
     private JPanel pnlBotones2,pnlBotones,pnltexto,Contenedor1;
+<<<<<<< HEAD
     private double var1, var2;
     private int operacion;
     
     
+=======
+  
+>>>>>>> juan
     public Interfaz()
     {
         // mira mi huevo.
