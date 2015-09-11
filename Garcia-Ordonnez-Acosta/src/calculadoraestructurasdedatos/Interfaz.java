@@ -45,6 +45,7 @@ public class Interfaz extends JFrame
     {
         // mira mi huevo.
         super ("Calculadora del Averno");
+        
         Contenedor1 = new JPanel(new GridLayout(3, 1));
         add(Contenedor1);
         AgregarBoton();
