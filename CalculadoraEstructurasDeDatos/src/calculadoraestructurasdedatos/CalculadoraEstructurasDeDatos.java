@@ -17,13 +17,14 @@ public class CalculadoraEstructurasDeDatos {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-     // TODO code application logic here
+     // TODO code application logic here    
         Interfaz marco = new Interfaz();
         marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         marco.setLocation(500, 150);
         marco.setResizable(false);
         marco.setSize(400, 400);
         marco.setVisible(true);
+        marco.IconoFrame();
     }
     
 }

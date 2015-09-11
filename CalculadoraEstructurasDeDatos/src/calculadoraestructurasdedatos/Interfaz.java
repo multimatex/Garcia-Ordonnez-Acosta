@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package calculadoraestructurasdedatos;
+import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -11,11 +12,16 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+
+import javax.swing.ImageIcon;
+
 import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -25,8 +31,7 @@ import javax.swing.JPanel;
  */
 public class Interfaz extends JFrame
 {    
-    
-    
+   
     // Todos los botones declarados
     private JButton btn0,btn1,btn2,btn3, btn4,btn5,btn6,btn7,btn8,btn9,btnSuma,btnResta,btnMult,btnDiv,btnPot,btnMod,btnDivE,btnIgual,btnPunto,btnBorrar,btnPar1,btnPar2,btnC;
     private JTextField jtCalculadora;
@@ -45,11 +50,18 @@ public class Interfaz extends JFrame
         AgregarBoton();
         botonEscuchador();//comentario de prueba
         jtCalculadora.setText("0");
-        this.setSize(800, 800);        
+        this.setSize(800, 800);
+        operadores = new ArrayStack();
+        valores = new ArrayStack();
+        operaciones_temp = new ArrayStack();
+        valores_temp = new ArrayStack();
         
  
     }
-    
+    public void IconoFrame()
+    {
+     setIconImage(new ImageIcon(getClass().getResource("../ImagenIcono/calcuworld.png")).getImage());
+    }
     //Este metodo Crea los botones y los Agrega
     public void AgregarBoton()
     {
@@ -145,7 +157,7 @@ public class Interfaz extends JFrame
             if (e.getSource() == btnSuma)
             {
                 operacion = 1;
-                var1 = Integer.parseInt(jtCalculadora.getText());
+                var1 = Double.parseDouble(jtCalculadora.getText());
             }
             
             if (e.getSource() != btnBorrar && e.getSource() != btnC && e.getSource() != btnIgual && e.getSource() != btnDiv
@@ -159,8 +171,9 @@ public class Interfaz extends JFrame
             
             if (e.getSource() == btnBorrar)
             {
-                if(jtCalculadora.getText().length()!=0){
-                jtCalculadora.setText(jtCalculadora.getText().substring(0, jtCalculadora.getText().length()-1));
+                if(jtCalculadora.getText().length()!=0)
+                {
+                jtCalculadora.setText(jtCalculadora.getText().substring(0,jtCalculadora.getText().length()-1));
                 }
             }
             if (e.getSource() == btnC)
@@ -168,7 +181,7 @@ public class Interfaz extends JFrame
             
             if (e.getSource() == btnIgual)
             {
-                 String texto_de_entrada = "0" + jtCalculadora.getText();
+                 String texto_de_entrada = jtCalculadora.getText();
                  texto_de_entrada = texto_de_entrada.trim();
                  texto_de_entrada = texto_de_entrada.replaceAll(" ", "");
                  texto_de_entrada = texto_de_entrada.replaceAll("-", "+-");
@@ -194,7 +207,7 @@ public class Interfaz extends JFrame
                     
                 }
                  
-                 valores.push(Double.parseDouble(temp));
+                 valores.push((double) Double.valueOf(temp));
                  char simbolos_de_operaciones[] ={'/','*','+'};
                  
                  for (int i = 0; i < 3; i++) {
@@ -265,8 +278,12 @@ public class Interfaz extends JFrame
                 //double num = Integer.parseInt(jtCalculadora.getText());
                 //System.out.println(num);
             }
-            
-            
+            if (e.getSource() == btnResta) {
+                
+                operacion = 2;
+               
+            }
         }
+
     }
 }

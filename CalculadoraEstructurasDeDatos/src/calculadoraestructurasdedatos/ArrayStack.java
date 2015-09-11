@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
 public class ArrayStack<E> implements Stack<E>{
 
     
-    private E [] data = (E[]) new Object[1];    
+    private E [] data = (E[]) new Object[2];    
     private int size = 0;
     @Override
     public boolean isEmpty() {
@@ -55,11 +55,11 @@ public class ArrayStack<E> implements Stack<E>{
         
         if (data.length == size) {
             
-            E [] arreglo_nuevo = (E[]) new Object[size + size*2];
+            E arreglo_nuevo [] = (E[]) new Object[size*2];
             int contador = 0;
             
             for (E indice : data) {
-                arreglo_nuevo[contador] =indice;
+                arreglo_nuevo[contador] =indice;//HAY UNA FALLA AQUI EN ALGUNA PARTE DE ESTE PUSH
                 contador++;
             }
             
