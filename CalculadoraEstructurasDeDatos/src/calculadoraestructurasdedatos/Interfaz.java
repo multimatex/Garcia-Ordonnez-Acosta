@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package calculadoraestructurasdedatos;
+import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -49,7 +50,11 @@ public class Interfaz extends JFrame
         AgregarBoton();
         botonEscuchador();//comentario de prueba
         jtCalculadora.setText("0");
-        this.setSize(800, 800);        
+        this.setSize(800, 800);
+        operadores = new ArrayStack();
+        valores = new ArrayStack();
+        operaciones_temp = new ArrayStack();
+        valores_temp = new ArrayStack();
         
  
     }
@@ -176,7 +181,7 @@ public class Interfaz extends JFrame
             
             if (e.getSource() == btnIgual)
             {
-                 String texto_de_entrada = "0" + jtCalculadora.getText();
+                 String texto_de_entrada = jtCalculadora.getText();
                  texto_de_entrada = texto_de_entrada.trim();
                  texto_de_entrada = texto_de_entrada.replaceAll(" ", "");
                  texto_de_entrada = texto_de_entrada.replaceAll("-", "+-");
@@ -202,7 +207,7 @@ public class Interfaz extends JFrame
                     
                 }
                  
-                 valores.push(Double.parseDouble(temp));
+                 valores.push((double) Double.valueOf(temp));
                  char simbolos_de_operaciones[] ={'/','*','+'};
                  
                  for (int i = 0; i < 3; i++) {
