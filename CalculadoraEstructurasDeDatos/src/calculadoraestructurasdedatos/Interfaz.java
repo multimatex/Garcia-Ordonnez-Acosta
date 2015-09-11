@@ -11,10 +11,12 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -29,10 +31,6 @@ public class Interfaz extends JFrame
     private JButton btn0,btn1,btn2,btn3, btn4,btn5,btn6,btn7,btn8,btn9,btnSuma,btnResta,btnMult,btnDiv,btnPot,btnMod,btnDivE,btnIgual,btnPunto,btnBorrar,btnPar1,btnPar2,btnC;
     private JTextField jtCalculadora;
     private JPanel pnlBotones2,pnlBotones,pnltexto,Contenedor1;
-
-
-
-
     private double var1, var2;
     private int operacion;
     
@@ -49,7 +47,10 @@ public class Interfaz extends JFrame
         this.setSize(800, 800);
  
     }
-    
+    public void IconoFrame()
+    {
+     setIconImage(new ImageIcon(getClass().getResource("../ImagenIcono/calcuworld.png")).getImage());
+    }
     //Este metodo Crea los botones y los Agrega
     public void AgregarBoton()
     {
@@ -145,7 +146,7 @@ public class Interfaz extends JFrame
             if (e.getSource() == btnSuma)
             {
                 operacion = 1;
-                var1 = Integer.parseInt(jtCalculadora.getText());
+                var1 = Double.parseDouble(jtCalculadora.getText());
             }
             
             if (e.getSource() != btnBorrar && e.getSource() != btnC && e.getSource() != btnIgual && e.getSource() != btnDiv
@@ -159,8 +160,9 @@ public class Interfaz extends JFrame
             
             if (e.getSource() == btnBorrar)
             {
-                if(jtCalculadora.getText().length()!=0){
-                jtCalculadora.setText(jtCalculadora.getText().substring(0, jtCalculadora.getText().length()-1));
+                if(jtCalculadora.getText().length()!=0)
+                {
+                jtCalculadora.setText(jtCalculadora.getText().substring(0,jtCalculadora.getText().length()-1));
                 }
             }
             if (e.getSource() == btnC)
@@ -171,8 +173,12 @@ public class Interfaz extends JFrame
                 double num = Integer.parseInt(jtCalculadora.getText());
                 System.out.println(num);
             }
-            
-            
+            if (e.getSource() == btnResta) {
+                
+                operacion = 2;
+               
+            }
         }
+
     }
 }
