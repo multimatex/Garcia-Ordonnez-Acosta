@@ -16,6 +16,7 @@ import java.awt.Image;
 import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
@@ -56,6 +57,8 @@ public class Interfaz extends JFrame
         valores = new ArrayStack();
         operaciones_temp = new ArrayStack();
         valores_temp = new ArrayStack();
+        escribirSoloNum();
+        
         
  
     }
@@ -140,7 +143,7 @@ public class Interfaz extends JFrame
        btnIgual.addActionListener(manejador);
        btnSuma.addActionListener(manejador);
     }
-    private void cant1KeyPressed(java.awt.event.KeyEvent evt) {  //este metodo borra letras que hayan ingresado del teclado
+    /*private void cant1KeyPressed(java.awt.event.KeyEvent evt) {  //este metodo borra letras que hayan ingresado del teclado
         // aqui ponemos la validacion: 
         int k = (int) evt.getKeyChar(); //k = al valor de la tecla presionada 
         if (k >= 97 && k <= 122 || k >= 65 && k <= 90) { //Si el carácter ingresado es una letra 
@@ -148,7 +151,37 @@ public class Interfaz extends JFrame
             JOptionPane.showMessageDialog(null, "No puede ingresar letras!!!", "Validando Datos", 
             JOptionPane.ERROR_MESSAGE); 
         }
+    }*/
+    
+    //* Se introduce digitos y el punto en el teclado mas no letras 
+    
+    public void escribirSoloNum()
+    {   
+        jtCalculadora.addKeyListener(new KeyAdapter(){
+            public void keyTyped(KeyEvent evt){
+                int k=(int)evt.getKeyChar();
+               // El rango de caracteres que se puede ingresar por teclado
+                /*
+                char c = evt.getKeyChar();
+                if (c < '0' || c > '9' && c=='.') 
+                evt.consume();
+                */
+                
+                if ((k >= 42 && k <= 57 && k != 44) || (k==8)||(k==127)) {
+                    
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "ERROR: Entrada no valida", "ERROR: Validacion de Datos", 
+                    JOptionPane.ERROR_MESSAGE);
+                    evt.setKeyChar((char) KeyEvent.VK_CLEAR);
+                    evt.consume();
+                }
+               
+            } 
+        });   
     }
+    
     
     public class botonManejador implements ActionListener
     {
@@ -183,9 +216,9 @@ public class Interfaz extends JFrame
             if (e.getSource() == btnIgual)
             {
                  String texto_de_entrada = jtCalculadora.getText();
-                 texto_de_entrada = texto_de_entrada.trim();
-                 texto_de_entrada = texto_de_entrada.replaceAll(" ", "");
-                 texto_de_entrada = texto_de_entrada.replaceAll("-", "+-");
+                 //texto_de_entrada = texto_de_entrada.trim();//se volvio inutil por control de input
+                 //texto_de_entrada = texto_de_entrada.replaceAll(" ", "");//se volvio inutil por control de input
+                 //texto_de_entrada = texto_de_entrada.replaceAll("-", "+-");//BETADA JODE NUMEROS NEGATIVOS TAMBIEN
                  String temp = "";
                  for (int i = 0; i < texto_de_entrada.length(); i++) {
                      char indice_de_navegacion = texto_de_entrada.charAt(i);
@@ -224,6 +257,7 @@ public class Interfaz extends JFrame
                          {
                              if (i == 0) 
                              {
+                                 
                                  valores_temp.push(valor2/valor1);
                                  es_simbolo_operador = true;
                                  break;
