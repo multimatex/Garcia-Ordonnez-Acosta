@@ -3,17 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package calculadoraestructurasdedatos;
-//nsndsadnasn
+package ordonezacostagarcia;
+
 /**
  *
  * @author Equipo
  */
-public interface Stack<E>
-{
-  public boolean isEmpty();
-  public E peek();
-  public E pop();
-  public void push(E recibido);
-         
+public interface Stack<E> {
+
+    public boolean isEmpty();
+
+    public E peek();
+
+    public E pop();
+
+    public void push(E recibido);
 }
